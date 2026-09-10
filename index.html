@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jizzjizz动漫-热门番剧推荐与二次元文化分享站</title>
+  <meta name="description" content="jizzjizz动漫是一个专注动漫推荐、新番导视、漫画资讯与二次元社区文化分享的网站。每日更新热门动画、经典番剧、漫画推荐与深度盘点，为同好提供交流空间。">
+  <meta name="keywords" content="jizzjizz动漫,动漫推荐,新番导视,漫画推荐,二次元,动画资讯,热门番剧,经典动漫">
+  <style>
+    /* 全局重置与变量 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      background: #faf7f2;  /* 纸感底色，柔和二次元风格 */
+      color: #23211c;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* 全站容器 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== 头部 ===== */
+    .site-header {
+      background: #fffdf8;
+      border-bottom: 1px solid #ebe5db;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo a {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #e14e4e;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo span {
+      background: #fae162;
+      color: #3f2f0c;
+      padding: 2px 10px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .main-nav ul {
+      display: flex;
+      gap: 24px;
+      font-weight: 500;
+    }
+
+    .main-nav a {
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      color: #3c372e;
+    }
+
+    .main-nav a:hover {
+      border-bottom-color: #e14e4e;
+      color: #e14e4e;
+    }
+
+    .search-area {
+      display: flex;
+      align-items: center;
+      background: #f0ebe3;
+      border-radius: 50px;
+      padding: 4px 4px 4px 18px;
+    }
+
+    .search-area input {
+      border: none;
+      background: transparent;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      width: 140px;
+      outline: none;
+      color: #2d281f;
+    }
+
+    .search-area button {
+      background: #e14e4e;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .search-area button:hover {
+      background: #c53f3f;
+    }
+
+    /* ===== 首屏 hero ===== */
+    .hero {
+      background: linear-gradient(145deg, #fdf8ef 0%, #fff3e0 100%);
+      border-radius: 40px;
+      margin: 30px 0 20px;
+      padding: 40px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      border: 1px solid #f0e2ce;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+    }
+
+    .hero-content {
+      flex: 1 1 300px;
+    }
+
+    .hero-content h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #2b221a;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .hero-content h1 i {
+      color: #e14e4e;
+      font-style: normal;
+      background: #ffd9d9;
+      padding: 0 10px;
+      border-radius: 50px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #4d4236;
+      max-width: 550px;
+      margin-top: 8px;
+    }
+
+    .hero-tags {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-tags span {
+      background: white;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid #f1d7bd;
+    }
+
+    .hero-art {
+      flex: 0 1 260px;
+      background: #ffd7ba;
+      border-radius: 30px;
+      padding: 20px;
+      text-align: center;
+      transform: rotate(2deg);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+    }
+
+    .hero-art .emoji-big {
+      font-size: 5rem;
+      line-height: 1;
+    }
+
+    .hero-art p {
+      background: rgba(255,255,255,0.7);
+      padding: 6px 12px;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* ===== 分类导航卡片 ===== */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin: 30px 0 30px;
+    }
+
+    .cat-item {
+      background: white;
+      border-radius: 28px;
+      padding: 20px 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #efe7dc;
+      transition: all 0.25s;
+    }
+
+    .cat-item:hover {
+      transform: translateY(-4px);
+      border-color: #f0b8a0;
+      background: #fffaf5;
+    }
+
+    .cat-icon {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    .cat-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* ===== 板块标题 ===== */
+    .section-title {
+      margin: 40px 0 20px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 30px;
+      background: #e14e4e;
+      border-radius: 20px;
+    }
+
+    .section-sub {
+      color: #6b5e4f;
+      margin-top: -10px;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    /* ===== 番剧卡片 ===== */
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .anime-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      transition: 0.2s ease;
+      border: 1px solid #eee7dd;
+    }
+
+    .anime-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.06);
+    }
+
+    .card-thumb {
+      background: #f5ede2;
+      height: 140px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      color: #7f715e;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-rating {
+      color: #e1754a;
+      font-weight: 700;
+    }
+
+    /* ===== 资讯条目 ===== */
+    .news-list {
+      background: white;
+      border-radius: 30px;
+      padding: 15px 25px;
+      border: 1px solid #eee4d8;
+    }
+
+    .news-item {
+      padding: 16px 0;
+      border-bottom: 1px dashed #e7dccd;
+      display: flex;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-date {
+      color: #c0a27c;
+      font-size: 0.8rem;
+      min-width: 70px;
+      font-weight: 600;
+    }
+
+    .news-text {
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .news-text:hover {
+      color: #e14e4e;
+    }
+
+    /* ===== 双列区块 ===== */
+    .double-column {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 25px 0 20px;
+    }
+
+    .col {
+      flex: 1 1 300px;
+    }
+
+    .list-badge {
+      background: #fff2e5;
+      border-radius: 30px;
+      padding: 10px 20px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      border-left: 6px solid #e14e4e;
+    }
+
+    .simple-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f3e7db;
+      display: flex;
+      gap: 10px;
+    }
+
+    .simple-list li:last-child {
+      border: none;
+    }
+
+    .tag-badge {
+      background: #faeae2;
+      padding: 2px 12px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #b34a2e;
+      font-weight: 600;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-box {
+      background: #fbf2e9;
+      border-radius: 30px;
+      padding: 25px;
+      margin: 40px 0;
+    }
+
+    .faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #e2d4c2;
+    }
+
+    .faq-q {
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .faq-q::before {
+      content: "Q";
+      background: #e14e4e;
+      color: white;
+      border-radius: 50px;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      padding-left: 34px;
+      color: #5f513e;
+    }
+
+    /* ===== footer ===== */
+    .site-footer {
+      margin-top: 60px;
+      background: #fffdf8;
+      border-top: 1px solid #e9dfd3;
+      padding: 30px 0;
+      text-align: center;
+      color: #5f5545;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #7a6a55;
+    }
+
+    .footer-links a:hover {
+      color: #e14e4e;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .main-nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .search-area {
+        width: 100%;
+      }
+      .search-area input {
+        flex: 1;
+        width: auto;
+      }
+      .hero {
+        padding: 28px 18px;
+        border-radius: 28px;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .hero-art {
+        max-width: 100%;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .anime-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card-thumb {
+        height: 100px;
+        font-size: 2.5rem;
+      }
+      .news-item {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+  <!-- 指定广告脚本 -->
+  <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="#">jizzjizz动漫 <span>同好社区</span></a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="#">新番</a></li>
+          <li><a href="#">漫画库</a></li>
+          <li><a href="#">排行榜</a></li>
+          <li><a href="#">社区</a></li>
+        </ul>
+      </nav>
+      <div class="search-area">
+        <input type="search" placeholder="搜动漫、漫画...">
+        <button>搜索</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 主视觉 -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>发现 <i>jizzjizz</i> 的动漫宇宙</h1>
+        <p class="hero-desc">每日推荐热门番剧、冷门神作、漫画连载。从热血到治愈，这里有一群热爱二次元的人。</p>
+        <div class="hero-tags">
+          <span>🔥 新番导视</span>
+          <span>🏆 霸榜番剧</span>
+          <span>📚 漫画家</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="emoji-big">🎌✨</div>
+        <p>jizzjizz 动漫站</p>
+      </div>
+    </section>
+
+    <!-- 分类快捷入口 -->
+    <div class="category-grid">
+      <div class="cat-item"><div class="cat-icon">⚔️</div><div class="cat-name">热血战斗</div></div>
+      <div class="cat-item"><div class="cat-icon">🤖</div><div class="cat-name">科幻机战</div></div>
+      <div class="cat-item"><div class="cat-icon">💞</div><div class="cat-name">恋爱治愈</div></div>
+      <div class="cat-item"><div class="cat-icon">😂</div><div class="cat-name">搞笑日常</div></div>
+      <div class="cat-item"><div class="cat-icon">🔮</div><div class="cat-name">奇幻冒险</div></div>
+      <div class="cat-item"><div class="cat-icon">🎭</div><div class="cat-name">悬疑推理</div></div>
+      <div class="cat-item"><div class="cat-icon">🏀</div><div class="cat-name">运动竞技</div></div>
+    </div>
+
+    <!-- 热门番剧推荐 -->
+    <section>
+      <h2 class="section-title">🔥 本周热门番剧</h2>
+      <p class="section-sub">根据同好口碑与编辑推荐更新</p>
+      <div class="anime-grid">
+        <article class="anime-card">
+          <div class="card-thumb">🌊</div>
+          <h3 class="card-title">潮与虎 新篇</h3>
+          <div class="card-meta"><span>📺 更新至12话</span><span class="card-rating">★ 8.9</span></div>
+        </article>
+        <article class="anime-card">
+          <div class="card-thumb">⚡</div>
+          <h3 class="card-title">一击必杀！</h3>
+          <div class="card-meta"><span>📺 全集</span><span class="card-rating">★ 9.2</span></div>
+        </article>
+        <article class="anime-card">
+          <div class="card-thumb">🍙</div>
+          <h3 class="card-title">饭团与武士</h3>
+          <div class="card-meta"><span>📺 连载中</span><span class="card-rating">★ 8.5</span></div>
+        </article>
+        <article class="anime-card">
+          <div class="card-thumb">🐉</div>
+          <h3 class="card-title">龙之叹息</h3>
+          <div class="card-meta"><span>📺 更新至8话</span><span class="card-rating">★ 9.0</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 资讯 + 双列推荐 -->
+    <section>
+      <h2 class="section-title">📡 动画资讯 & 深度内容</h2>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="news-date">2025.02.24</span>
+          <span class="news-text">剧场版《星之记忆》定档，特报公开</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.02.21</span>
+          <span class="news-text">人气漫画《边缘行者》动画化决定</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.02.18</span>
+          <span class="news-text">经典动画4K重制版上线流媒体</span>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.02.15</span>
+          <span class="news-text">jizzjizz 漫展同人专区招募开启</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 热门漫画 / 榜单 双栏 -->
+    <div class="double-column">
+      <div class="col">
+        <div class="list-badge">📚 本月漫画人气榜</div>
+        <ul class="simple-list">
+          <li><span class="tag-badge">1</span> 异世界食堂·漫画版</li>
+          <li><span class="tag-badge">2</span> 暗巷魔术师</li>
+          <li><span class="tag-badge">3</span> 幽灵女友是JK</li>
+          <li><span class="tag-badge">4</span> 机甲维修部</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="list-badge">🎯 编辑推荐 · 补番专区</div>
+        <ul class="simple-list">
+          <li>⭐ 来自新世界 · 神作重评</li>
+          <li>⭐ 虫师 特别篇 铃之雫</li>
+          <li>⭐ 混沌武士 蓝光版</li>
+          <li>⭐ 比宇宙更远的地方</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ 板块 -->
+    <section class="faq-box">
+      <h2 class="section-title" style="margin-top: 0;">❓ 关于 jizzjizz 动漫</h2>
+      <div class="faq-item">
+        <div class="faq-q">这个网站的内容定位是什么？</div>
+        <div class="faq-a">jizzjizz动漫是一个以动漫、漫画为核心的兴趣社区，致力于提供新番推荐、经典回顾和二次元文化讨论。我们相信“jizzjizz”代表一种对作品纯粹的热爱与探索。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">如何参与社区讨论或投稿？</div>
+        <div class="faq-a">目前可通过站内搜索或留言板交流，我们即将开放论坛板块。每位注册用户都可以分享自己的动漫随笔、推荐或吐槽。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">内容更新频率如何？</div>
+        <div class="faq-a">番剧导视与资讯每日更新，深度长文每周三篇。漫画推荐每周更新，榜单每月初重置。欢迎常来逛逛~</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">关于我们</a>
+        <a href="#">投稿指南</a>
+        <a href="#">友情链接</a>
+        <a href="#">隐私声明</a>
+        <a href="#">联系合作</a>
+      </div>
+      <p style="font-size: 0.9rem;">© 2025 jizzjizz动漫 · 为爱发电 · 二次元同好集散地</p>
+    </div>
+  </footer>
+</body>
+</html>
