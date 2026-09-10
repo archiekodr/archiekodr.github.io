@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>涩图 - 精选插画与二次元视觉分享站</title>
+    <meta name="description" content="涩图站，专注二次元插画、壁纸与视觉美学分享。收录Pixiv精选、画师推荐、风格分类与创作指南，陪你发现每一帧心动画面。">
+    <meta name="keywords" content="涩图,二次元插画,P站精选,壁纸,画师,ACG图片,插画社区,视觉分享">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f6f2fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            color: #242424;
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header */
+        .site-header {
+            background: #ffffffdd;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e6daf5;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 4px 8px rgba(176, 92, 255, 0.2));
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #5f3dc4, #b16cea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-right: 4px;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            color: #7b6c8f;
+            font-weight: 400;
+            align-self: flex-end;
+            margin-bottom: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+            color: #3d2f4f;
+        }
+
+        .nav-links a {
+            transition: color 0.2s;
+            padding: 6px 2px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #9b4dff;
+            border-bottom-color: #b28cff;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 40px;
+            padding: 4px 4px 4px 18px;
+            border: 1px solid #e0d2f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            width: 150px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #28243d;
+            border: none;
+            color: white;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .search-box button:hover {
+            background: #4e3b6b;
+        }
+
+        /* hero */
+        .hero {
+            margin: 28px 0 20px;
+            border-radius: 36px;
+            padding: 32px 36px;
+            background: radial-gradient(ellipse at 30% 20%, #f9eaff, #e7d2ff);
+            border: 1px solid #dcc6f7;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-copy {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 2.7rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            background: linear-gradient(145deg, #1e1333, #3b2a5e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #3f3057;
+            max-width: 520px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: #ffffffc9;
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            border: 1px solid #ffffff;
+            font-weight: 500;
+            color: #3e2a5c;
+            font-size: 0.9rem;
+        }
+
+        .hero-emoji {
+            font-size: 6rem;
+            filter: drop-shadow(0 8px 20px #b78aff7c);
+            margin-right: 20px;
+        }
+
+        /* section heading */
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 40px 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title span {
+            background: #c9abff;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 1rem;
+            color: #241b36;
+            font-weight: 500;
+        }
+
+        /* card grid */
+        .grid-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .art-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(71, 38, 110, 0.05);
+            transition: transform 0.2s, box-shadow 0.25s;
+            border: 1px solid #f0e6fa;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .art-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(120, 70, 200, 0.12);
+        }
+
+        .art-thumb {
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, #c8b1e8, #e6d2ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.4rem;
+            position: relative;
+        }
+
+        .art-thumb .badge {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #3b2b4a;
+        }
+
+        .art-info {
+            padding: 16px 16px 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .art-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1f1730;
+        }
+
+        .art-meta {
+            color: #6d5d80;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .art-meta .tag {
+            background: #f1e6ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* 画师榜单 */
+        .artist-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 20px 0 30px;
+        }
+
+        .artist-item {
+            background: white;
+            border-radius: 20px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #e5d5f5;
+            flex-wrap: wrap;
+        }
+
+        .artist-avatar {
+            background: #d9c4ff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .artist-desc {
+            flex: 1;
+            min-width: 180px;
+        }
+        .artist-desc strong {
+            font-size: 1.1rem;
+        }
+        .artist-desc p {
+            color: #5f4f70;
+            font-size: 0.9rem;
+        }
+        .artist-count {
+            background: #e7d8ff;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.9rem;
+            color: #35264a;
+        }
+
+        /* 分类引导 */
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0 12px;
+        }
+        .pill {
+            background: white;
+            border: 1px solid #ddd0ec;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .pill:hover {
+            background: #2a1f3e;
+            color: white;
+            border-color: #2a1f3e;
+        }
+
+        /* 双栏信息 */
+        .info-split {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+            margin: 40px 0;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #e6d5ff;
+        }
+
+        .guide-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e8ddf5;
+            padding: 14px 0;
+        }
+        .faq-item h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        .faq-item p {
+            color: #3f324f;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            margin-top: 50px;
+            background: #211a2e;
+            color: #cbbde0;
+            border-radius: 40px 40px 0 0;
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #dacaf0;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 0;
+            }
+            .nav-links {
+                justify-content: center;
+                order: 3;
+                gap: 18px;
+            }
+            .search-box {
+                order: 2;
+                width: 100%;
+            }
+            .search-box input {
+                flex: 1;
+            }
+            .hero {
+                padding: 24px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-emoji {
+                font-size: 4rem;
+                margin: 10px 0 0;
+            }
+            .info-split {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo-area">
+            <span class="logo-icon">🎨</span>
+            <span class="logo-text">涩图</span>
+            <span class="logo-sub">· 视觉灵感站</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hot">今日热榜</a>
+            <a href="#artist">画师</a>
+            <a href="#category">分类</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索画师 / 画风...">
+            <button>检索</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <!-- hero 首屏 -->
+    <section class="hero">
+        <div class="hero-copy">
+            <h1>发现下一张心动插画</h1>
+            <p>涩图 · 二次元视觉美学档案。收录Pixiv精选、插画师推荐与风格笔记，不只是图库，更是灵感漫游地。</p>
+            <div class="hero-tags">
+                <span class="hero-tag"># 氛围感</span>
+                <span class="hero-tag"># 高清壁纸</span>
+                <span class="hero-tag"># 原创角色</span>
+                <span class="hero-tag"># 每日更新</span>
+            </div>
+        </div>
+        <div class="hero-emoji">✨🖼️</div>
+    </section>
+
+    <!-- 最新更新卡片 -->
+    <section id="hot">
+        <h2 class="section-title">🔥 今日涩图 · 人气精选 <span>更新 24 张</span></h2>
+        <div class="grid-card">
+            <article class="art-card">
+                <div class="art-thumb">🌌<span class="badge">Pixiv 日榜</span></div>
+                <div class="art-info">
+                    <h3>星夜漫游</h3>
+                    <div class="art-meta"><span class="tag">#梦幻</span><span>@星野</span></div>
+                </div>
+            </article>
+            <article class="art-card">
+                <div class="art-thumb">🌸<span class="badge">新作</span></div>
+                <div class="art-info">
+                    <h3>春樱少女</h3>
+                    <div class="art-meta"><span class="tag">#和服</span><span>@Momo</span></div>
+                </div>
+            </article>
+            <article class="art-card">
+                <div class="art-thumb">🎧<span class="badge">高赞</span></div>
+                <div class="art-info">
+                    <h3>城市律动</h3>
+                    <div class="art-meta"><span class="tag">#赛博</span><span>@Neon</span></div>
+                </div>
+            </article>
+            <article class="art-card">
+                <div class="art-thumb">🍊<span class="badge">氛围</span></div>
+                <div class="art-info">
+                    <h3>夏日汽水</h3>
+                    <div class="art-meta"><span class="tag">#清新</span><span>@Lemon</span></div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 分类速览 -->
+    <section id="category">
+        <h2 class="section-title">🧩 风格分类 · 找到你的取向</h2>
+        <div class="category-pills">
+            <span class="pill">✨ 唯美治愈</span>
+            <span class="pill">🌙 暗黑幻想</span>
+            <span class="pill">🎐 古风雅韵</span>
+            <span class="pill">🤖 未来科幻</span>
+            <span class="pill">🍡 日常废萌</span>
+            <span class="pill">🌊 风景壁纸</span>
+            <span class="pill">💫 原创角色</span>
+            <span class="pill">🎭 同人再创作</span>
+        </div>
+    </section>
+
+    <!-- 画师区 -->
+    <section id="artist">
+        <h2 class="section-title">👩‍🎨 人气画师 · 灵感源泉</h2>
+        <div class="artist-list">
+            <div class="artist-item">
+                <div class="artist-avatar">🌙</div>
+                <div class="artist-desc"><strong>Mika 三日月</strong><p>擅长柔和光影与细腻情感，代表作《夜行列车》</p></div>
+                <span class="artist-count">23 张精选</span>
+            </div>
+            <div class="artist-item">
+                <div class="artist-avatar">🦋</div>
+                <div class="artist-desc"><strong>Rei·零</strong><p>大胆撞色，迷幻风格，为多部轻小说绘制封面</p></div>
+                <span class="artist-count">18 张精选</span>
+            </div>
+            <div class="artist-item">
+                <div class="artist-avatar">🍙</div>
+                <div class="artist-desc"><strong>饭团君</strong><p>轻松日常系，笔下的少女灵动可爱</p></div>
+                <span class="artist-count">31 张精选</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 双栏：指南 + FAQ -->
+    <div class="info-split">
+        <div class="guide-card">
+            <h3>📘 涩图美学 · 新手浏览指南</h3>
+            <p style="margin-bottom: 12px;">涩图不仅仅是好看的图片，更是一种视觉叙事。我们按照绘画媒介、构图、色彩氛围做了分类，方便你快速找到契合心情的画面。每周更新画师访谈与调色思路。</p>
+            <p style="background:#f6efff; padding:12px 16px; border-radius: 20px;">💡 提示：所有图片均来自创作共享或已获授权的作品，尊重画师，支持正版。本站不提供任何R18内容。</p>
+        </div>
+        <div class="guide-card" id="faq">
+            <h3>❓ 常见问题</h3>
+            <div class="faq-item">
+                <h4>涩图站可以下载原图吗？</h4>
+                <p>部分画师开放原尺寸下载，我们会在图片详情页标注授权范围。请勿商用。</p>
+            </div>
+            <div class="faq-item">
+                <h4>如何投稿推荐画师？</h4>
+                <p>私信官方邮箱或点击“画师推荐”，附上作品集链接即可。</p>
+            </div>
+            <div class="faq-item">
+                <h4>更新频率？</h4>
+                <p>每日10:00与18:00更新两次，周末会加更特辑。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部推荐 -->
+    <section style="margin: 30px 0 0;">
+        <h2 class="section-title">🎯 你可能也喜欢</h2>
+        <div class="grid-card" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+            <div class="art-card"><div class="art-thumb">🌆</div><div class="art-info"><h3>黄昏电车站</h3></div></div>
+            <div class="art-card"><div class="art-thumb">🎐</div><div class="art-info"><h3>风铃与白猫</h3></div></div>
+            <div class="art-card"><div class="art-thumb">☕</div><div class="art-info"><h3>咖啡屋一角</h3></div></div>
+            <div class="art-card"><div class="art-thumb">🌿</div><div class="art-info"><h3>植物园午后</h3></div></div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="#">关于我们</a>
+        <a href="#">版权说明</a>
+        <a href="#">画师入驻</a>
+        <a href="#">联系方式</a>
+    </div>
+    <p style="font-size:0.9rem; opacity:0.7;">© 涩图视觉站 · 仅供美学参考，所有作品版权归原作者所有</p>
+</footer>
+
+</body>
+</html>
